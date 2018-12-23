@@ -21,6 +21,13 @@
 
 
         </activity>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.saraalaswad.moviebox.MainActivity" />
+        <provider
+            android:name=".databaseSQLITE.MoviesProvider"
+            android:exported="true"
+            android:authorities="com.example.saraalaswad.moviebox" />
     </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />

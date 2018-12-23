@@ -43,7 +43,8 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 
-public class MovieDetailFragment extends Fragment implements TrailerAdapter.OnItemClickListener, TrailersTask.Listener, ReviewsTask.Listener, ReviewAdapter.OnItemClickListener {
+public class MovieDetailFragment extends Fragment implements
+        TrailerAdapter.OnItemClickListener, TrailersTask.Listener, ReviewsTask.Listener, ReviewAdapter.OnItemClickListener {
 
     public static final String LOG_TAG = MovieDetailFragment.class.getSimpleName();
 
@@ -312,7 +313,7 @@ public class MovieDetailFragment extends Fragment implements TrailerAdapter.OnIt
                     mDb.movieDao().insertMovie(movieEntry);
                     Log.d(LOG_TAG, "Was not marked as Favorite, so Marked it!");
                   */
-                   ContentValues movie_data = new ContentValues();
+                    ContentValues movie_data = new ContentValues();
                     movie_data.put(MovieContract.MovieEntry.COLUMN_MOVIE_ID,
                             mMovie.getId());
                     movie_data.put(MovieContract.MovieEntry.COLUMN_MOVIE_VOTE_AVERAGE,mMovie.getVoteAverage());
@@ -429,19 +430,19 @@ public class MovieDetailFragment extends Fragment implements TrailerAdapter.OnIt
     private boolean check_for_favorite() {
         //Check the database if this is already in the list
         //Using SQLite
-            Cursor movieCursor = getContext().getContentResolver().query(
-                    MovieContract.MovieEntry.CONTENT_URI,
-                    new String[]{MovieContract.MovieEntry.COLUMN_MOVIE_ID},
-                    MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + mMovie.getId(),
-                    null,
-                    null);
+        Cursor movieCursor = getContext().getContentResolver().query(
+                MovieContract.MovieEntry.CONTENT_URI,
+                new String[]{MovieContract.MovieEntry.COLUMN_MOVIE_ID},
+                MovieContract.MovieEntry.COLUMN_MOVIE_ID + " = " + mMovie.getId(),
+                null,
+                null);
 
-            if (movieCursor != null && movieCursor.moveToFirst()) {
-                movieCursor.close();
-                return true;
-            } else {
-                return false;
-            }
+        if (movieCursor != null && movieCursor.moveToFirst()) {
+            movieCursor.close();
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
